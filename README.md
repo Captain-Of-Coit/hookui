@@ -1,5 +1,7 @@
 # HookUI
 
+![Screenshot](misc/screenshot.png)
+
 HookUI is some sort of UI framework/loader for Cities: Skylines 2 (C:S2). It replaces the default UI with a UI that provides hooks for mod-authors to inject their own UI components, makes it fit in  with the existing game UI easily.
 
 Warning: This is a early version of the loader/framework, expect dragons

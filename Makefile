@@ -14,3 +14,13 @@ ui-bundle: install-ui-deps
 
 build: ui-bundle mod-build
 	@echo Build complete.
+
+package-win: build
+	@mv mod\bin\Debug\netstandard2.1\0Harmony.dll dist
+	@mv mod\bin\Debug\netstandard2.1\HookUIMod.dll dist
+	@echo Packaged to dist/
+
+package-unix: build
+	@mv mod/bin/Debug/netstandard2.1/0Harmony.dll dist
+	@mv mod/bin/Debug/netstandard2.1/HookUIMod.dll dist
+	@echo Packaged to dist/

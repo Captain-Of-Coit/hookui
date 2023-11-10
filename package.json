@@ -1,0 +1,14 @@
+{
+  "name": "hookui",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "0.19.5"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}

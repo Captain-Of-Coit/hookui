@@ -1,0 +1,15 @@
+{
+  "name": "city-monitor",
+  "version": "0.0.1",
+  "description": "Displays a little window so you can see the most important details of your city without having to open up any panels manually.",
+  "main": "build.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.19.5"
+  }
+}

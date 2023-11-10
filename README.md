@@ -18,6 +18,11 @@ It consists of a few parts:
     - HookUIMod - C# mod made for C:S2
     - HookUILib - C# library for mod authors to use to directly embed UIs with their own C# mods
 
+# Requirements
+
+- Cities: Skylines 2 (duh)
+- BepInEx-Unity.Mono-win-x64-6.0.0-be.674+82077ec
+
 # Usage
 
 ## UI only (React)
@@ -57,7 +62,7 @@ Then you need to compile the code from JSX to JS, and bundle the code. This shou
 npx esbuild helloworld.jsx --bundle --outfile=helloworld.transpiled.js
 ```
 
-Then finally you need to put the file in the `/HookUI/extensions` directory in your game directory and it'll get picked up automatically, as long as it ends with `.js`
+Then finally you need to put the file in the `Cities2_Data\StreamingAssets\~UI~\HookUI\Extensions` directory in your game directory and it'll get picked up automatically, as long as it ends with `.js`
 
 ## With C# Mod
 

@@ -24,11 +24,3 @@ await esbuild.build({
   bundle: shouldBundle,
   outfile: outPath + 'hookui.api.bundle.js',
 })
-
-// Examples
-
-await esbuild.build({
-  entryPoints: ["examples/city-monitor/city_monitor.jsx"],
-  bundle: true,
-  outfile: outPath + 'examples.city_monitor.transpiled.js',
-})

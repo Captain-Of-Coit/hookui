@@ -8,8 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout source
       uses: actions/checkout@v3
+    - name: Check libcs2
+      uses: actions/checkout@v3
+      with:
+        repository: Captain-Of-Coit/libcs2
+        token: ${{ secrets.GH_PAT }}
+        path: libcs2/
     - name: Install NodeJS
       uses: actions/setup-node@v3
       with:

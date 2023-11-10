@@ -29,6 +29,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Reference Include="Game"><HintPath>../libcs2/Game.dll</HintPath></Reference>
+		<Reference Include="Colossal"><HintPath>../libcs2/Colossal.dll</HintPath></Reference>
+		<Reference Include="Colossal.Core"><HintPath>../libcs2/Colossal.Core.dll</HintPath></Reference>
+		<Reference Include="Colossal.UI"><HintPath>../libcs2/Colossal.UI.dll</HintPath></Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Game">
+			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\Game.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="Colossal.AssetPipeline">
 			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\Colossal.AssetPipeline.dll</HintPath>
 			<Private>False</Private>
@@ -97,10 +108,7 @@
 			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\cohtml.Net.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Game">
-			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\Game.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+
 		<Reference Include="Unity.Entities">
 			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\Unity.Entities.dll</HintPath>
 			<Private>False</Private>

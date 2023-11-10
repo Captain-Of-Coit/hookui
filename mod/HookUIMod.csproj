@@ -16,9 +16,9 @@
 	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 	
-	<PropertyGroup>
+	<!-- <PropertyGroup>
 		<Cities2_Location>C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II</Cities2_Location>
-	</PropertyGroup>
+	</PropertyGroup> -->
 
 	<ItemGroup>
 	  <EmbeddedResource Include="../dist/hookui.api.bundle.js" />
@@ -28,13 +28,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="Game"><HintPath>../libcs2/Game.dll</HintPath></Reference>
-		<Reference Include="Colossal"><HintPath>../libcs2/Colossal.dll</HintPath></Reference>
-		<Reference Include="Colossal.Core"><HintPath>../libcs2/Colossal.Core.dll</HintPath></Reference>
-		<Reference Include="Colossal.UI"><HintPath>../libcs2/Colossal.UI.dll</HintPath></Reference>
+		<Reference Include="Game"><HintPath>../libcs2/Game.dll</HintPath><Private>False</Private></Reference>
+		<Reference Include="Colossal.Core"><HintPath>../libcs2/Colossal.Core.dll</HintPath><Private>False</Private></Reference>
+		<Reference Include="Colossal.UI"><HintPath>../libcs2/Colossal.UI.dll</HintPath><Private>False</Private></Reference>
 	</ItemGroup>
 
-	<ItemGroup>
+	<!-- <ItemGroup>
 		<Reference Include="Game">
 			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\Game.dll</HintPath>
 			<Private>False</Private>
@@ -132,7 +131,7 @@
 			<HintPath>$(Cities2_Location)\Cities2_Data\Managed\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-	</ItemGroup>
+	</ItemGroup> -->
 
 	<ItemGroup>
 		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />

@@ -24,7 +24,7 @@ namespace HookUIMod
 
             var actualVersion = Game.Version.current.fullVersion;
             // TODO move this into the horrible XML project/solution file
-            var compatibleVersion = "1.0.13f1 (121.24802) [5268.42135]";
+            var compatibleVersion = "1.0.12f1 (121.24802) [5268.42135]";
 
             var harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID + "_Cities2Harmony");
 
@@ -206,7 +206,7 @@ namespace HookUIMod
         public static void PrintVersionWarning(string filePath, string destinationPath, string actualVersion, string expectedVersion)
         {
             string fileContent = File.ReadAllText(filePath);
-            fileContent = fileContent.Replace("<!--EXTENSIONS_LIST-->", $"<div style=\"position: absolute; top: 10px; left: 10px; z-index: 10000; color: white;\" onclick=\"if (this.parentNode) this.parentNode.removeChild(this);\"><div>This HookUI version might not be compatible with your game version.</div><div>{actualVersion} = Actual</div><div>{expectedVersion} = Last tested version with HookUI</div><div>Click to hide</div></div>");
+            fileContent = fileContent.Replace("<!--EXTENSIONS_LIST-->", $"<div style=\"position: absolute; top: 10px; left: 10px; z-index: 10000; color: white;\" onclick=\"if (this.parentNode) this.parentNode.removeChild(this);\"><div>This HookUI version is not compatible with your game version.</div><div>Loading of extensions disabled.</div><div>{actualVersion} = Your CS2 version</div><div>{expectedVersion} = Last tested CS2 version with HookUI</div><div>Click to hide</div></div>");
             File.WriteAllText(destinationPath, fileContent);
         }
 

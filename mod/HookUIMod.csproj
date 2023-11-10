@@ -24,7 +24,6 @@
 	  <EmbeddedResource Include="../dist/hookui.api.bundle.js" />
 	  <EmbeddedResource Include="../dist/hookui.loader.bundle.js" />
 	  <EmbeddedResource Include="../dist/hookui.menu.bundle.js" />
-	  <EmbeddedResource Include="../dist/examples.city_monitor.transpiled.js" />
 	  <EmbeddedResource Include="../misc/index.html.template" />
 	</ItemGroup>
 

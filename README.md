@@ -20,10 +20,17 @@ It consists of a few parts:
 
 # Requirements
 
-- Cities: Skylines 2 (duh)
-- BepInEx-Unity.Mono-win-x64-6.0.0-be.674+82077ec
+- [Cities: Skylines 2](https://store.steampowered.com/app/949230/Cities_Skylines_II/) (duh)
+- [BepInEx-Unity.Mono-win-x64-6.0.0-be.674+82077ec](https://builds.bepinex.dev/projects/bepinex_be)
 
-# Usage
+# Installation (For players)
+
+- Make sure BepInEx 6.0.0 is installed
+- Download latest release from GitHub - [https://github.com/Captain-Of-Coit/hookui/releases](https://github.com/Captain-Of-Coit/hookui/releases)
+- Extract the ZIP archive
+- Place `HookUI` directory in `BepInEx\plugins` directory, within your game directory
+
+# Usage (For mod authors)
 
 ## UI only (React)
 

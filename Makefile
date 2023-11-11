@@ -12,6 +12,9 @@ ui-bundle: install-ui-deps
 	@echo Building HookUI frontend...
 	@node bundle_ui.mjs
 
+ui-install: ui-bundle
+	@cmd /c copy /y "dist\hookui.menu.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
+
 build: ui-bundle mod-build
 	@echo Build complete.
 

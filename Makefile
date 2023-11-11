@@ -16,11 +16,11 @@ build: ui-bundle mod-build
 	@echo Build complete.
 
 package-win: build
-	@mv mod\bin\Debug\netstandard2.1\0Harmony.dll dist
-	@mv mod\bin\Debug\netstandard2.1\HookUIMod.dll dist
+	@cmd /c copy /y "mod\bin\Debug\netstandard2.1\0Harmony.dll" "dist\"
+	@cmd /c copy /y "mod\bin\Debug\netstandard2.1\HookUIMod.dll" "dist\"
 	@echo Packaged to dist/
 
 package-unix: build
-	@mv mod/bin/Debug/netstandard2.1/0Harmony.dll dist
-	@mv mod/bin/Debug/netstandard2.1/HookUIMod.dll dist
+	@cp mod/bin/Debug/netstandard2.1/0Harmony.dll dist
+	@cp mod/bin/Debug/netstandard2.1/HookUIMod.dll dist
 	@echo Packaged to dist/

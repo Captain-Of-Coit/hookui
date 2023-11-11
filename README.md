@@ -82,3 +82,74 @@ The loader exposes a small API to help you do some common things, so not every U
 - MovableModal
 - SubscribeData
 - TriggerEvent
+
+
+# Misc / Notes
+
+## "Scrape" list of events in the frontend
+
+```javascript
+var allEvents = {}
+var clear = engine.on('*', (a,b,c) => {
+    if (['climate.temperature.update',
+         'cityInfo.residentialLowDemand.update',
+         'cityInfo.residentialMediumDemand.update',
+         'cityInfo.residentialHighDemand.update',
+         'cityInfo.industrialDemand.update',
+         'cityInfo.commercialDemand.update',
+         // Other common but annoying events that happen, that we already know about
+         "time.ticks.update",
+         "input.setActionPriority",
+         "cityInfo.happinessFactors.update"
+
+    ].includes(a)) {
+        return
+    }
+    allEvents[a] = a
+    console.log(a,b,c)
+})
+```
+
+Click around in the UI after running this to trigger calls to capture, then finally execute `copy(JSON.stringify(Object.keys(allEvents), null, 2))` to get a JS array of all found events copied into your clipboard.
+
+## "Scrape" interactive triggers
+
+```
+function newEngineTrigger() {
+    const args = arguments
+    console.log('trigger', args)
+    window.engine._oldTrigger.apply(this, args)
+}
+window.engine._oldTrigger = window.engine.trigger
+window.engine.trigger = newEngineTrigger
+```
+
+## Basic vanilla example
+
+```javascript
+var myElement = document.createElement('div')
+myElement.style.left = "300px"
+myElement.style.top = "300px"
+myElement.style.position = "relative"
+myElement.style.color = "white"
+
+var myLabel = document.createElement('span')
+var myValue = document.createElement('span')
+
+myLabel.innerHTML = 'Electricity'
+myValue.innerHTML = 'N/A'
+
+myElement.appendChild(myLabel)
+myElement.appendChild(myValue)
+
+document.body.appendChild(myElement)
+
+// Subscription
+var clear = engine.on('electricityInfo.electricityAvailability.update', (data) => {
+    console.log(data)
+    myValue.innerHTML = data.current.toString()
+})
+engine.trigger('electricityInfo.electricityAvailability.subscribe')
+// later, unsubscribe
+engine.trigger('electricityInfo.electricityAvailability.unsubscribe')
+```

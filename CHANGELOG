@@ -1,0 +1,8 @@
+# 0.0.2
+
+- HookUI menu covered some parts of the InfoView menu, but no more
+- HookUI menu now closes when you open InfoView menu, and Infoview menu closes when you open HookUI menu
+
+# 0.0.1
+
+Initial Release

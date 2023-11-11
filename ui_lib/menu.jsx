@@ -48,6 +48,10 @@ const $Menu = ({visible}) => {
         opacity: visible ? 1 : 0,
         left: 0,
         top: 45,
+        pointerEvents: visible ? "auto" : "none",
+        visibility: visible ? "visible" : "hidden",
+        transition: "opacity 0.5s, visibility 0.5s",
+        transitionDelay: visible ? "0s" : "0.1s" // Delay applying 'hidden' when fading out
     }
 
     return <div class="info-layout_BVk" style={style}>

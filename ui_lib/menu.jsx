@@ -51,7 +51,7 @@ const $Menu = ({visible}) => {
         pointerEvents: visible ? "auto" : "none",
         visibility: visible ? "visible" : "hidden",
         transition: "opacity 0.5s, visibility 0.5s",
-        transitionDelay: visible ? "0s" : "0.1s" // Delay applying 'hidden' when fading out
+        transitionDelay: visible ? "0s" : "0.05s" // Delay applying 'hidden' when fading out
     }
 
     return <div class="info-layout_BVk" style={style}>
@@ -68,8 +68,28 @@ const $Menu = ({visible}) => {
 const $HookUIMenu = ({react}) => {
     const [showMenu, setShowMenu] = react.useState(false)
     const toggleMenu = () => {
-        setShowMenu(!showMenu)
+        const newVal = !showMenu
+        setShowMenu(newVal)
+        // If we're displaying HookUI, hide infoview if it's open
+        if (newVal) {
+            window.engine.trigger('game.closePanel', 'Game.UI.InGame.InfoviewMenu')
+        }
     }
+
+    react.useEffect(() => {
+        const subscription = window.engine.on('game.showPanel', (panel) => {
+            if (panel === 'Game.UI.InGame.InfoviewMenu') {
+                setShowMenu(false)
+            }
+        })
+        window.engine.trigger('game.showPanel.subscribe')
+
+        return () => {
+            window.engine.trigger('game.showPanel.unsubscribe')
+            subscription.clear();
+        };
+    }, [showMenu])
+
     return <button className="button_ke4 button_ke4 button_H9N" style={{left: 60, top: 10}} onClick={toggleMenu}>
         <div className="tinted-icon_iKo icon_be5" style={{maskImage: "url(Media/Glyphs/Student.svg)"}}></div>
         <$Menu visible={showMenu}/>

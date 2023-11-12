@@ -53,7 +53,6 @@ namespace HookUIMod
 
         public static String InjectHookUILoader(String orig_text)
         {
-            // TODO this is not actually working
             var src = "tutorialListFocusKey:sIe.tutorialList})]";
             var dst = "tutorialListFocusKey:sIe.tutorialList}),(0,e.jsx)(window._$hookui_loader,{react:i})]";
             return orig_text.Replace(src, dst);

@@ -60,8 +60,15 @@ namespace HookUIMod
 
         public static String HookPanelsMenu(String orig_text)
         {
-            var src = "})]}),(0,e.jsx)(CEe";
-            var dst = "}),(0,e.jsx)(window._$hookui_menu,{react:i})]}),(0,e.jsx)(CEe";
+            var src = "dve.lock})})})})]";
+            var dst = "dve.lock})})})}),(0,e.jsx)(window._$hookui_menu,{react:i})]";
+            return orig_text.Replace(src, dst);
+        }
+
+        public static String OverwriteAbsoluteButton(String orig_text)
+        {
+            var src = ".button_H9N{pointer-events:auto;position:absolute;top:0;left:0}";
+            var dst = ".button_H9N{pointer-events:auto}";
             return orig_text.Replace(src, dst);
         }
 
@@ -101,12 +108,18 @@ namespace HookUIMod
 
             File.WriteAllText(assetsDir + "\\HookUI\\version", MyPluginInfo.PLUGIN_VERSION);
 
+            // Patches injection points in the bundle
             var bundleDir = assetsDir + "\\HookUI\\index.js";
             string fileContent = File.ReadAllText(bundleDir);
-
             fileContent = InjectHookUILoader(fileContent);
             fileContent = HookPanelsMenu(fileContent);
             File.WriteAllText(bundleDir, fileContent);
+
+            // Patches some built-in styling
+            var styleFile = assetsDir + "\\HookUI\\index.css";
+            string styleContent = File.ReadAllText(styleFile);
+            styleContent = OverwriteAbsoluteButton(styleContent);
+            File.WriteAllText(styleFile, styleContent);
 
             WriteResourcesToDisk();
 

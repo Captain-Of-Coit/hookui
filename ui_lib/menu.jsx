@@ -90,7 +90,7 @@ const $HookUIMenu = ({react}) => {
         };
     }, [showMenu])
 
-    return <button className="button_ke4 button_ke4 button_H9N" style={{marginLeft: 10}} onClick={toggleMenu}>
+    return <button className="button_ke4 button_ke4 button_H9N" style={{marginLeft: "5rem"}} onClick={toggleMenu}>
         <div className="tinted-icon_iKo icon_be5" style={{maskImage: "url(Media/Glyphs/Student.svg)"}}></div>
         <$Menu visible={showMenu}/>
     </button>

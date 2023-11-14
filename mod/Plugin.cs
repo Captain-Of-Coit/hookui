@@ -22,9 +22,9 @@ namespace HookUIMod
             var srcFile = "Cities2_Data\\StreamingAssets\\~UI~\\HookUI\\index.html.template";
             var dstFile = "Cities2_Data\\StreamingAssets\\~UI~\\HookUI\\index.html";
 
-            var actualVersion = Game.Version.current.fullVersion;
+            var actualVersion = Game.Version.current.shortVersion;
             // TODO move this into the horrible XML project/solution file
-            var compatibleVersion = "1.0.13f1 (121.24802) [5268.42135]";
+            var compatibleVersion = "1.0.13f1";
 
             var harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID + "_Cities2Harmony");
 

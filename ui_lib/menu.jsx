@@ -46,8 +46,8 @@ const $Menu = ({visible}) => {
     const style = {
         bottom: "initial",
         opacity: visible ? 1 : 0,
-        left: 0,
-        top: 45,
+        left: "50rem",
+        top: "45rem",
         pointerEvents: visible ? "auto" : "none",
         visibility: visible ? "visible" : "hidden",
         transition: "opacity 0.5s, visibility 0.5s",
@@ -90,7 +90,7 @@ const $HookUIMenu = ({react}) => {
         };
     }, [showMenu])
 
-    return <button className="button_ke4 button_ke4 button_H9N" style={{left: 60, top: 10}} onClick={toggleMenu}>
+    return <button className="button_ke4 button_ke4 button_H9N" style={{marginLeft: 10}} onClick={toggleMenu}>
         <div className="tinted-icon_iKo icon_be5" style={{maskImage: "url(Media/Glyphs/Student.svg)"}}></div>
         <$Menu visible={showMenu}/>
     </button>

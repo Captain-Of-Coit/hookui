@@ -1,8 +1,9 @@
 all: build
+BEPINEX_VERSION = 6
 
 mod-build:
 	@echo Building HookUIMod...
-	@cd mod && dotnet clean && dotnet restore && dotnet build
+	@cd mod && dotnet clean && dotnet restore && dotnet build /p:BepInExVersion=$(BEPINEX_VERSION)
 
 install-ui-deps:
 	@echo Installing frontend dependencies...

@@ -3,11 +3,14 @@ using System.IO;
 using System;
 using System.Linq;
 using System.Reflection;
-using BepInEx.Unity.Mono;
 using BepInEx;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Text;
+
+#if BEPINEX_V6
+    using BepInEx.Unity.Mono;
+#endif
 
 namespace HookUIMod
 {

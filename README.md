@@ -121,14 +121,18 @@ Click around in the UI after running this to trigger calls to capture, then fina
 
 ## "Scrape" interactive triggers
 
-```
+```javascript
 function newEngineTrigger() {
     const args = arguments
-    console.log('trigger', args)
+    if (!["input.setActionPriority"].includes(args[0])) {
+        console.log('trigger', args)
+    }
     window.engine._oldTrigger.apply(this, args)
 }
 window.engine._oldTrigger = window.engine.trigger
 window.engine.trigger = newEngineTrigger
+// To undo:
+window.engine.trigger = window.engine._oldTrigger
 ```
 
 ## Basic vanilla example

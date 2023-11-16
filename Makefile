@@ -12,16 +12,18 @@ ui-bundle: install-ui-deps
 	@echo Building HookUI frontend...
 	@node bundle_ui.mjs
 
-ui-install: ui-bundle
-	@cmd /c copy /y "dist\hookui.menu.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
+ui-install: package-win
+	cmd /c copy /y "dist\hookui.menu.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
+	cmd /c copy /y "dist\hookui.api.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
+	cmd /c copy /y "dist\hookui.loader.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
 
 build: ui-bundle mod-build
 	@echo Build complete.
 
 package-win: build
-	@cmd /c copy /y "mod\bin\Debug\netstandard2.1\0Harmony.dll" "dist\"
-	@cmd /c copy /y "mod\bin\Debug\netstandard2.1\HookUIMod.dll" "dist\"
-	@echo Packaged to dist/
+	cmd /c copy /y "mod\bin\Debug\netstandard2.1\0Harmony.dll" "dist"
+	cmd /c copy /y "mod\bin\Debug\netstandard2.1\HookUIMod.dll" "dist"
+	echo Packaged to dist/
 
 package-unix: build
 	@cp mod/bin/Debug/netstandard2.1/0Harmony.dll dist

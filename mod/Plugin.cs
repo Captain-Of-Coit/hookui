@@ -27,7 +27,7 @@ namespace HookUIMod
 
             var actualVersion = Game.Version.current.shortVersion;
             // TODO move this into the horrible XML project/solution file
-            var compatibleVersion = "1.0.13f1";
+            var compatibleVersion = "1.0.14f1";
 
             var harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID + "_Cities2Harmony");
 

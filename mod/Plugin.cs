@@ -56,15 +56,15 @@ namespace HookUIMod
 
         public static String InjectHookUILoader(String orig_text)
         {
-            var src = "tutorialListFocusKey:sIe.tutorialList})]";
-            var dst = "tutorialListFocusKey:sIe.tutorialList}),(0,e.jsx)(window._$hookui_loader,{react:i})]";
+            var src = "tutorialListFocusKey:uIe.tutorialList})]";
+            var dst = "tutorialListFocusKey:uIe.tutorialList}),(0,e.jsx)(window._$hookui_loader,{react:i})]";
             return orig_text.Replace(src, dst);
         }
 
         public static String HookPanelsMenu(String orig_text)
         {
-            var src = "dve.lock})})})})]";
-            var dst = "dve.lock})})})}),(0,e.jsx)(window._$hookui_menu,{react:i})]";
+            var src = "fve.lock})})})})]";
+            var dst = "fve.lock})})})}),(0,e.jsx)(window._$hookui_menu,{react:i})]";
             return orig_text.Replace(src, dst);
         }
 
@@ -150,8 +150,8 @@ namespace HookUIMod
                 var actualJSHash = "";
                 var actualHTMLHash = "";
 
-                var expectedJSHash = "b9bffb759486ac99875974778c0a52fb44fcb973c1055c002c2e14ec2935f5cd";
-                var expectedHTMLHash = "b9bffb759486ac99875974778c0a52fb44fcb973c1055c002c2e14ec2935f5cd";
+                var expectedJSHash = "CAA2852C609B391E942A474EA4A26A4AD14E66DE6A1C5FEE4E1B8C111D3E9492";
+                var expectedHTMLHash = "CAA2852C609B391E942A474EA4A26A4AD14E66DE6A1C5FEE4E1B8C111D3E9492";
 
                 if (true || actualJSHash == expectedJSHash)
                 {

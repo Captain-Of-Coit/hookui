@@ -1,4 +1,8 @@
-# 0.0.2
+# 0.2.0
+
+- Compatible with game version `1.0.14f1`, thanks to @adamdewolf!
+
+# 0.0.2 - 0.1.0
 
 - HookUI menu covered some parts of the InfoView menu, but no more
 - HookUI menu now closes when you open InfoView menu, and Infoview menu closes when you open HookUI menu

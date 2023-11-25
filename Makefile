@@ -1,7 +1,7 @@
 all: build
 BEPINEX_VERSION = 6
 
-mod-build:
+mod-build: lib-build
 	@echo Building HookUIMod...
 	@cd mod && dotnet clean && dotnet restore && dotnet build /p:BepInExVersion=$(BEPINEX_VERSION)
 

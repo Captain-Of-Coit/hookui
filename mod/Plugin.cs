@@ -45,7 +45,7 @@ namespace HookUIMod
             }
 
             InstallHookUI();
-            InitializeFileWatcher();
+            // InitializeFileWatcher();
 
             if (CheckVersion(actualVersion, compatibleVersion))
             {
@@ -59,32 +59,35 @@ namespace HookUIMod
             }
         }
 
-        private void InitializeFileWatcher() {
-            this.watcher = new System.IO.FileSystemWatcher(extensionsPath);
-            this.watcher.Path = extensionsPath;
-            //this.watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
+        // TODO We don't actually use this file watcher yet, but would be nice to be able to turn off the
+        // UI reload for Extensions, and then use the file watcher so we can hot-reload extensions
+        // For now, the built-in reload will do
+        // private void InitializeFileWatcher() {
+        //     this.watcher = new System.IO.FileSystemWatcher(extensionsPath);
+        //     this.watcher.Path = extensionsPath;
+        //     //this.watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
 
-            // NotifyFilters.LastAccess | NotifyFilters.FileName
-            this.watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+        //     // NotifyFilters.LastAccess | NotifyFilters.FileName
+        //     this.watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-            //this.watcher.Filter = "*.js";
+        //     //this.watcher.Filter = "*.js";
 
-            this.watcher.Created += OnFileCreated;
-            this.watcher.Deleted += OnFileDeleted;
+        //     this.watcher.Created += OnFileCreated;
+        //     this.watcher.Deleted += OnFileDeleted;
 
-            this.watcher.EnableRaisingEvents = true;
-            UnityEngine.Debug.Log($"Watcher set to track {this.watcher.Path}");
-        }
-        private void OnFileCreated(object source, FileSystemEventArgs e) {
-            UnityEngine.Debug.Log($"File created {e.Name}");
-            Logger.LogInfo($"File created {e.Name}");
-            //this.AddExtension(e.Name);
-        }
-        private void OnFileDeleted(object source, FileSystemEventArgs e) {
-            UnityEngine.Debug.Log($"File deleted {e.Name}");
-            Logger.LogInfo($"File deleted {e.Name}");
-            //availableExtensions.Remove(e.Name);
-        }
+        //     this.watcher.EnableRaisingEvents = true;
+        //     UnityEngine.Debug.Log($"Watcher set to track {this.watcher.Path}");
+        // }
+        // private void OnFileCreated(object source, FileSystemEventArgs e) {
+        //     UnityEngine.Debug.Log($"File created {e.Name}");
+        //     Logger.LogInfo($"File created {e.Name}");
+        //     //this.AddExtension(e.Name);
+        // }
+        // private void OnFileDeleted(object source, FileSystemEventArgs e) {
+        //     UnityEngine.Debug.Log($"File deleted {e.Name}");
+        //     Logger.LogInfo($"File deleted {e.Name}");
+        //     //availableExtensions.Remove(e.Name);
+        // }
 
         public static String InjectHookUILoader(String orig_text)
         {

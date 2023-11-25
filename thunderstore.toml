@@ -1,0 +1,23 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "CaptainOfCoit"
+name = "HookUI"
+versionNumber = "0.2.0"
+description = "Allows mod authors to inject their own UI into the existing CS2 game UI"
+websiteUrl = "https://github.com/Captain-Of-Coit/hookui"
+containsNsfwContent = false
+
+[package.dependencies]
+BepInEx-BepInExPack = "5.4.2100"
+
+[build]
+icon = "./icon.png"
+readme = "./README.md"
+outdir = "./ts-build"
+
+[publish]
+repository = "https://thunderstore.io"
+communities = [ "cities-skylines-ii", ]
+categories = [ "mods" ]

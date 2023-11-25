@@ -1,5 +1,4 @@
-﻿using System.IO.Compression;
-using System.IO;
+﻿using System.IO;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +6,7 @@ using BepInEx;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 #if BEPINEX_V6
     using BepInEx.Unity.Mono;
@@ -17,6 +17,10 @@ namespace HookUIMod
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
     {
+        private readonly string hookUIPath = Path.Combine(Application.dataPath, "StreamingAssets", "~UI~", "HookUI");
+        private readonly string extensionsPath = Path.Combine(Application.dataPath, "StreamingAssets", "~UI~", "HookUI", "Extensions");
+        private System.IO.FileSystemWatcher watcher;
+
         private void Awake()
         {
             // Plugin startup logic
@@ -35,24 +39,49 @@ namespace HookUIMod
 
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} made patches! Patched methods: " + patchedMethods.Length);
 
-            foreach (var patchedMethod in patchedMethods)
-            {
+            foreach (var patchedMethod in patchedMethods) {
                 Logger.LogInfo($"Patched method: {patchedMethod.Module.Name}:{patchedMethod.Name}");
             }
 
             InstallHookUI();
+            // InitializeFileWatcher();
 
-            if (CheckVersion(actualVersion, compatibleVersion))
-            {
-                // Rewrite index.html to include list of mods UI we should load
-                var scriptPaths = this.GenerateScriptPathsList("Cities2_Data\\StreamingAssets\\~UI~\\HookUI\\Extensions");
-                InsertScriptTags(srcFile, dstFile, scriptPaths);
-            }
-            else
-            {
+            if (CheckVersion(actualVersion, compatibleVersion)) {
+                WriteFileToPath(srcFile, dstFile);
+            } else {
                 PrintVersionWarning(srcFile, dstFile, actualVersion, compatibleVersion);
             }
         }
+
+        // TODO We don't actually use this file watcher yet, but would be nice to be able to turn off the
+        // UI reload for Extensions, and then use the file watcher so we can hot-reload extensions
+        // For now, the built-in reload will do
+        // private void InitializeFileWatcher() {
+        //     this.watcher = new System.IO.FileSystemWatcher(extensionsPath);
+        //     this.watcher.Path = extensionsPath;
+        //     //this.watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
+
+        //     // NotifyFilters.LastAccess | NotifyFilters.FileName
+        //     this.watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+
+        //     //this.watcher.Filter = "*.js";
+
+        //     this.watcher.Created += OnFileCreated;
+        //     this.watcher.Deleted += OnFileDeleted;
+
+        //     this.watcher.EnableRaisingEvents = true;
+        //     UnityEngine.Debug.Log($"Watcher set to track {this.watcher.Path}");
+        // }
+        // private void OnFileCreated(object source, FileSystemEventArgs e) {
+        //     UnityEngine.Debug.Log($"File created {e.Name}");
+        //     Logger.LogInfo($"File created {e.Name}");
+        //     //this.AddExtension(e.Name);
+        // }
+        // private void OnFileDeleted(object source, FileSystemEventArgs e) {
+        //     UnityEngine.Debug.Log($"File deleted {e.Name}");
+        //     Logger.LogInfo($"File deleted {e.Name}");
+        //     //availableExtensions.Remove(e.Name);
+        // }
 
         public static String InjectHookUILoader(String orig_text)
         {
@@ -103,8 +132,7 @@ namespace HookUIMod
             }
         }
 
-        public static void InstallHookUI()
-        {
+        public static void InstallHookUI() {
             var assetsDir = "Cities2_Data\\StreamingAssets\\~UI~";
             // TODO obviously, we don't want to do this every time, try to read version then adjust
             CopyDirectory(assetsDir + "\\GameUI", assetsDir + "\\HookUI");
@@ -137,8 +165,6 @@ namespace HookUIMod
                 resourceStream.CopyTo(fileStream);
             }
         }
-
-
 
         public static bool CheckVersion(string currentVersion, string compatibleVersion)
         {
@@ -204,17 +230,9 @@ namespace HookUIMod
             }
         }
 
-        public static void InsertScriptTags(string filePath, string destinationPath, List<string> scriptPaths)
+        public static void WriteFileToPath(string filePath, string destinationPath)
         {
             string fileContent = File.ReadAllText(filePath);
-            StringBuilder scriptTagsBuilder = new StringBuilder();
-
-            foreach (var scriptPath in scriptPaths)
-            {
-                scriptTagsBuilder.AppendLine($"<script src=\"{scriptPath}\"></script>");
-            }
-
-            fileContent = fileContent.Replace("<!--EXTENSIONS_LIST-->", scriptTagsBuilder.ToString());
             File.WriteAllText(destinationPath, fileContent);
         }
 

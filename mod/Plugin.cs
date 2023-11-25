@@ -39,22 +39,16 @@ namespace HookUIMod
 
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} made patches! Patched methods: " + patchedMethods.Length);
 
-            foreach (var patchedMethod in patchedMethods)
-            {
+            foreach (var patchedMethod in patchedMethods) {
                 Logger.LogInfo($"Patched method: {patchedMethod.Module.Name}:{patchedMethod.Name}");
             }
 
             InstallHookUI();
             // InitializeFileWatcher();
 
-            if (CheckVersion(actualVersion, compatibleVersion))
-            {
-                // Rewrite index.html to include list of mods UI we should load
-                var scriptPaths = this.GenerateScriptPathsList("Cities2_Data\\StreamingAssets\\~UI~\\HookUI\\Extensions");
-                InsertScriptTags(srcFile, dstFile, scriptPaths);
-            }
-            else
-            {
+            if (CheckVersion(actualVersion, compatibleVersion)) {
+                WriteFileToPath(srcFile, dstFile);
+            } else {
                 PrintVersionWarning(srcFile, dstFile, actualVersion, compatibleVersion);
             }
         }
@@ -236,17 +230,9 @@ namespace HookUIMod
             }
         }
 
-        public static void InsertScriptTags(string filePath, string destinationPath, List<string> scriptPaths)
+        public static void WriteFileToPath(string filePath, string destinationPath)
         {
             string fileContent = File.ReadAllText(filePath);
-            StringBuilder scriptTagsBuilder = new StringBuilder();
-
-            foreach (var scriptPath in scriptPaths)
-            {
-                scriptTagsBuilder.AppendLine($"<script src=\"{scriptPath}\"></script>");
-            }
-
-            //fileContent = fileContent.Replace("<!--EXTENSIONS_LIST-->", scriptTagsBuilder.ToString());
             File.WriteAllText(destinationPath, fileContent);
         }
 

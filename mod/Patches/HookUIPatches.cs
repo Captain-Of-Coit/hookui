@@ -5,8 +5,23 @@ using Game.SceneFlow;
 using Game.UI;
 using HarmonyLib;
 using System.Reflection.Emit;
+using Game.SceneFlow;
+using Game.UI;
+using Game.Common;
+using Game;
+using HookUI.UI;
 
 namespace HookUIMod.Patches {
+
+    [HarmonyPatch(typeof(SystemOrder))]
+    public static class SystemOrderPatch {
+        [HarmonyPatch("Initialize")]
+        [HarmonyPostfix]
+        public static void Postfix(UpdateSystem updateSystem) {
+            updateSystem.UpdateAt<HookUIUISystem>(SystemUpdatePhase.GameSimulation);
+        }
+    }
+
     [HarmonyPatch(typeof(GameManager))]
     [HarmonyPatch("InitializeUI")]
     public static class GameManager_InitializeUIPatch {

@@ -1,6 +1,12 @@
 dist/
 node_modules/
+ts-build/
+
 examples/*/node_modules/
+
 mod/bin/
 mod/obj/
 mod/.vs/
+
+lib/bin/
+lib/obj/

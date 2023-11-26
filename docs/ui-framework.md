@@ -17,8 +17,7 @@ Then you can access the built-in components with their styling by importing the 
 ```jsx
 import {$Panel} from 'hookui-framework'
 
-<$Panel title="My first panel">
+<$Panel title="My first panel" react={react}>
     <h1>This is inside the panel</h1>
 </$Panel>
 ```
-

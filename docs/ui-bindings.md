@@ -1,6 +1,6 @@
 # HookUILib UI Bindings
 
-The following is an example of a CS2 UI System, which can read data from the game state and communicate with the UI from your mod.
+The following is an example of a CS2 UI System, which can read data from the game state and communicate with the UI from your mod. When setting up bindings, your [System](https://cities2modding.github.io/wiki/reference/ecs/system.html) should extend from [`UISystemBase`](https://cities2modding.github.io/wiki/reference/game-ui/uisystembase.html)
 
 ```csharp
 class MyUISystem : UISystemBase {

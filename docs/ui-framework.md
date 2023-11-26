@@ -14,7 +14,7 @@ npm install captain-of-coit/hookui-framework
 
 Then you can access the built-in components with their styling by importing the right component:
 
-```
+```jsx
 import {$Panel} from 'hookui-framework'
 
 <$Panel title="My first panel">

@@ -32,12 +32,14 @@ build: ui-bundle mod-build
 
 package-win: build
 	cmd /c copy /y "mod\bin\Debug\netstandard2.1\0Harmony.dll" "dist"
+	cmd /c copy /y "mod\bin\Debug\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll" "dist"
 	cmd /c copy /y "mod\bin\Debug\netstandard2.1\HookUIMod.dll" "dist"
 	cmd /c copy /y "lib\bin\Debug\netstandard2.1\HookUILib.dll" "dist"
 	echo Packaged to dist/
 
 package-unix: build
 	@cp mod/bin/Debug/netstandard2.1/0Harmony.dll dist
+	@cp mod/bin/Debug/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll dist
 	@cp mod/bin/Debug/netstandard2.1/HookUIMod.dll dist
 	@cp lib/bin/Debug/netstandard2.1/HookUILib.dll dist
 	@echo Packaged to dist/

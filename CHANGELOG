@@ -1,3 +1,7 @@
+# 0.3.1
+
+- Add Microsoft.Bcl.AsyncInterfaces DLL as HookUI didn't load properly for some people
+
 # 0.3.0
 
 - You can now embed React UI together with a C# mod

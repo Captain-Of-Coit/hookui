@@ -1,3 +1,8 @@
+# 0.3.0
+
+- You can now embed React UI together with a C# mod
+- Availability of HookUI-Framework for easier reusing of built-in UI components
+
 # 0.2.0
 
 - Compatible with game version `1.0.14f1`, thanks to @adamdewolf!

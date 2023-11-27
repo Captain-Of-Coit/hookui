@@ -12,7 +12,7 @@ lib-build:
 
 lib-publish: lib-build
 	@echo "Publishing HookUILib..."
-	@cd lib && dotnet pack && dotnet nuget push bin/Debug/HookUILib.0.1.0.nupkg -k $(NUGET_KEY) -s https://api.nuget.org/v3/index.json
+	@cd lib && dotnet pack && dotnet nuget push bin/Debug/HookUILib.0.3.0.nupkg -k $(NUGET_KEY) -s https://api.nuget.org/v3/index.json
 
 install-ui-deps:
 	@echo Installing frontend dependencies...

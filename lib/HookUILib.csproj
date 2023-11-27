@@ -3,7 +3,7 @@
         <TargetFramework>netstandard2.1</TargetFramework>
         <AssemblyName>HookUILib</AssemblyName>
         <Description>Provides HookUI functionality for mod authors</Description>
-        <Version>0.1.0</Version>
+        <Version>0.3.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>

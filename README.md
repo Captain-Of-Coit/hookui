@@ -44,3 +44,7 @@ It consists of a few parts:
     - [HookUILib UI Bindings](./docs/ui-bindings.md)
 - [HookUIFramework](./docs/ui-framework.md)
 - [Tips & Tricks](./docs/tips.md)
+
+# Full Examples:
+
+- [Vehicle Counter Demonstration Mod](https://github.com/Captain-Of-Coit/cs2-vehicle-counter)

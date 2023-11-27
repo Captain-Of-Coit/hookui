@@ -1,5 +1,7 @@
 # HookUILib UI Bindings
 
+## Making data in C# available to read in Game UI
+
 The following is an example of a CS2 UI System, which can read data from the game state and communicate with the UI from your mod. When setting up bindings, your [System](https://cities2modding.github.io/wiki/reference/ecs/system.html) should extend from [`UISystemBase`](https://cities2modding.github.io/wiki/reference/game-ui/uisystembase.html)
 
 ```csharp
@@ -25,6 +27,8 @@ class MyUISystem : UISystemBase {
     }
 }
 ```
+
+## Reading data in C# from Game UI
 
 Then in your React UI, you can listen for changes to the binding by listening to the `.update` event and then triggering the `.subscribe` event:
 
@@ -54,6 +58,8 @@ const $MyCoolMod = ({ react }) => {
 }
 ```
 
+## Loading UI System
+
 In order to load your `MyUISystem` system, write a Harmony Postfix method to add the system to the game loop:
 
 ```csharp
@@ -66,3 +72,7 @@ public static class SystemOrderPatch {
     }
 }
 ```
+
+## More Information
+
+For more information on how Bindings work in Cities: Skylines 2, visit the Unofficial Wiki and browse the pages related to the Game UI.

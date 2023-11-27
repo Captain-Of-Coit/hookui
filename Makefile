@@ -1,5 +1,6 @@
 all: build
 BEPINEX_VERSION = 6
+NUGET_KEY = "key"
 
 mod-build: lib-build
 	@echo Building HookUIMod...
@@ -8,6 +9,10 @@ mod-build: lib-build
 lib-build:
 	@echo Building HookUILib...
 	@cd lib && dotnet clean && dotnet restore && dotnet build
+
+lib-publish: lib-build
+	@echo "Publishing HookUILib..."
+	@cd lib && dotnet pack && dotnet nuget push bin/Debug/HookUILib.0.1.0.nupkg -k $(NUGET_KEY) -s https://api.nuget.org/v3/index.json
 
 install-ui-deps:
 	@echo Installing frontend dependencies...

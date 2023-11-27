@@ -11,6 +11,14 @@
         </RestoreAdditionalProjectSources>
         <RootNamespace>HookUILib</RootNamespace>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <!-- Nuget Stuff -->
+        <Description>Provides HookUI functionality for mod authors</Description>
+        <Authors>Captain-Of-Coit</Authors>
+        <PackageId>HookUILib</PackageId>
+        <PackageTags>UI;Modding;CitiesSkylines2;HookUI</PackageTags>
+        <RepositoryUrl>https://github.com/Captain-of-Coit/hookui</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Captain-of-Coit/hookui</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
         <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2"

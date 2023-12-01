@@ -31,7 +31,7 @@ namespace HookUIMod
 
             var actualVersion = Game.Version.current.shortVersion;
             // TODO move this into the horrible XML project/solution file
-            var compatibleVersion = "1.0.14f1";
+            var compatibleVersion = "1.0.15f1";
 
             var harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID + "_Cities2Harmony");
 
@@ -85,15 +85,15 @@ namespace HookUIMod
 
         public static String InjectHookUILoader(String orig_text)
         {
-            var src = "tutorialListFocusKey:uIe.tutorialList})]";
-            var dst = "tutorialListFocusKey:uIe.tutorialList}),(0,e.jsx)(window._$hookui_loader,{react:i})]";
+            var src = "tutorialListFocusKey:QSe.tutorialList})]";
+            var dst = "tutorialListFocusKey:QSe.tutorialList}),(0,e.jsx)(window._$hookui_loader,{react:i})]";
             return orig_text.Replace(src, dst);
         }
 
         public static String HookPanelsMenu(String orig_text)
         {
-            var src = "fve.lock})})})})]";
-            var dst = "fve.lock})})})}),(0,e.jsx)(window._$hookui_menu,{react:i})]";
+            var src = "fge.lock})})})})]";
+            var dst = "fge.lock})})})}),(0,e.jsx)(window._$hookui_menu,{react:i})]";
             return orig_text.Replace(src, dst);
         }
 

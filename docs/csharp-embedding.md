@@ -19,7 +19,10 @@ namespace MyCoolMod {
     public class MyCoolModUI : UIExtension {
         public new readonly ExtensionType extensionType = ExtensionType.Panel;
         public new readonly string extensionID = "examples.mycoolmod";
-        public new readonly string extensionContent = LoadEmbeddedResource("MyCoolMod.dist.mycoolmod.transpiled.js");
+
+        public MyCoolModUI() {
+            this.extensionContent = this.LoadEmbeddedResource("MyCoolMod.dist.mycoolmod.transpiled.js");
+        }
     }
 }
 ```

@@ -2,6 +2,7 @@ all: build
 BEPINEX_VERSION = 6
 NUGET_KEY = "key"
 POSTINSTALL_DIR = "G:\Thunderstore\CitiesSkylines2\profiles\DevEnv\BepInEx\plugins\HookUI"
+UI_DEV_DIR = "G:\SteamLibrary\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
 
 mod-build: lib-build
 	@echo Building HookUIMod...
@@ -24,9 +25,9 @@ ui-bundle: install-ui-deps
 	@node bundle_ui.mjs
 
 ui-install: package-win
-	cmd /c copy /y "dist\hookui.menu.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
-	cmd /c copy /y "dist\hookui.api.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
-	cmd /c copy /y "dist\hookui.loader.bundle.js" "C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\StreamingAssets\~UI~\HookUI\lib"
+	cmd /c copy /y "dist\hookui.menu.bundle.js" $(UI_DEV_DIR)
+	cmd /c copy /y "dist\hookui.api.bundle.js" $(UI_DEV_DIR)
+	cmd /c copy /y "dist\hookui.loader.bundle.js" $(UI_DEV_DIR)
 
 build: ui-bundle mod-build
 	@echo Build complete.

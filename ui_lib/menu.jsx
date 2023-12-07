@@ -1,4 +1,5 @@
 import React from 'react'
+import {useDataUpdate} from 'hookui-framework'
 
 const $MenuItem = ({icon}) => {
     return <button className="button_FBo button_ECf item_It6 item-mouse-states_Fmi item-selected_tAM item-focused_FuT toggle-states_DTm button_FBo button_ECf item_It6 item-mouse-states_Fmi item-selected_tAM item-focused_FuT toggle-states_DTm item_IYJ">
@@ -67,9 +68,14 @@ const $Menu = ({visible}) => {
 
 const $HookUIMenu = ({react}) => {
     const [showMenu, setShowMenu] = react.useState(false)
+
+    useDataUpdate(react, "hookui.is_menu_open", (new_val) => {
+        setShowMenu(new_val)
+    })
+
     const toggleMenu = () => {
         const newVal = !showMenu
-        setShowMenu(newVal)
+        window.engine.trigger('hookui.toggle_menu', newVal)
         // If we're displaying HookUI, hide infoview if it's open
         if (newVal) {
             window.engine.trigger('game.closePanel', 'Game.UI.InGame.InfoviewMenu')
@@ -79,7 +85,7 @@ const $HookUIMenu = ({react}) => {
     react.useEffect(() => {
         const subscription = window.engine.on('game.showPanel', (panel) => {
             if (panel === 'Game.UI.InGame.InfoviewMenu') {
-                setShowMenu(false)
+                window.engine.trigger('hookui.toggle_menu', false)
             }
         })
         window.engine.trigger('game.showPanel.subscribe')

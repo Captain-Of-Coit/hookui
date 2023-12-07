@@ -12,13 +12,26 @@ using System.Linq;
 namespace HookUI.UI {
     class HookUIUISystem : UISystemBase {
         private HashSet<string> availableExtensions = new HashSet<string>();
+        private bool isMenuOpen = false;
+
         private string kGroup = "hookui";
         protected override void OnCreate() {
             base.OnCreate();
 
+            // Make available in UI which extensions we've found via C# reflection
             this.AddUpdateBinding(new GetterValueBinding<HashSet<string>>(this.kGroup, "available_extensions", () => {
                 return this.availableExtensions;
             }, new HashSetWriter<string>()));
+
+            // Share the state of menu visibility to the Game UI
+            this.AddUpdateBinding(new GetterValueBinding<bool>(this.kGroup, "is_menu_open", () => {
+                return this.isMenuOpen;
+            }));
+
+            // Allow the UI to call `hookui.toggle_menu <bool>` to toggle menu
+            this.AddBinding(new TriggerBinding<bool>(this.kGroup, "toggle_menu", (is_open) => {
+                this.isMenuOpen = is_open;
+            }));
 
             UnityEngine.Debug.Log("Finding hookui extensions");
             // Finding all extensions

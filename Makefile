@@ -1,6 +1,7 @@
 all: build
 BEPINEX_VERSION = 6
 NUGET_KEY = "key"
+POSTINSTALL_DIR = "G:\Thunderstore\CitiesSkylines2\profiles\DevEnv\BepInEx\plugins\HookUI"
 
 mod-build: lib-build
 	@echo Building HookUIMod...
@@ -36,6 +37,13 @@ package-win: build
 	cmd /c copy /y "mod\bin\Debug\netstandard2.1\HookUIMod.dll" "dist"
 	cmd /c copy /y "lib\bin\Debug\netstandard2.1\HookUILib.dll" "dist"
 	echo Packaged to dist/
+
+package-dev: package-win
+	@echo "Cleaning and recreating Post-install directory: $(POSTINSTALL_DIR)"
+	cmd /c PowerShell -NoProfile -Command "if (Test-Path -Path $(POSTINSTALL_DIR)) { Remove-Item -Path $(POSTINSTALL_DIR) -Recurse -Force }; New-Item -Path $(POSTINSTALL_DIR) -ItemType Directory -Force"
+
+	@echo "Copying files to Post-install directory..."
+	cmd /c PowerShell -NoProfile -Command "& {Get-ChildItem '$(CURDIR)\dist\' -Recurse | Copy-Item -Destination $(POSTINSTALL_DIR) -Force; Get-ChildItem $(POSTINSTALL_DIR) -Recurse | Select-Object FullName}"
 
 package-unix: build
 	@cp mod/bin/Debug/netstandard2.1/0Harmony.dll dist

@@ -20,6 +20,7 @@ jobs:
           repository: Captain-Of-Coit/libcs2
           token: ${{ secrets.GH_PAT }}
           path: libcs2/
+          ref: 68eba6e62c60cf1a0d6e753e84e0ce59a3bba73e # 1.0.18f1
       - name: Install .NET Core
         uses: actions/setup-dotnet@v3
         with:

@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "CaptainOfCoit"
 name = "HookUI"
-versionNumber = "0.3.4"
+versionNumber = "0.3.5"
 description = "Allows mod authors to inject their own UI into the existing CS2 game UI"
 websiteUrl = "https://github.com/Captain-Of-Coit/hookui"
 containsNsfwContent = false

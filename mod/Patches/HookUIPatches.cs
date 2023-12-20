@@ -18,7 +18,7 @@ namespace HookUIMod.Patches {
         [HarmonyPatch("Initialize")]
         [HarmonyPostfix]
         public static void Postfix(UpdateSystem updateSystem) {
-            updateSystem.UpdateAt<HookUIUISystem>(SystemUpdatePhase.GameSimulation);
+            updateSystem.UpdateAt<HookUIUISystem>(SystemUpdatePhase.UIUpdate);
         }
     }
 
